@@ -27,6 +27,9 @@ function boardRates(ratesBoard) {
   });
 }
 
+boardRates(ratesBoard);
+setInterval(boardRates, 60000, ratesBoard);
+
 const moneyManager = new MoneyManager();
 
 moneyManager.addMoneyCallback = (data) => {
@@ -77,9 +80,9 @@ favoritesWidget.addUserCallback = (data) => {
       favoritesWidget.clearTable();
       favoritesWidget.fillTable(response.data);
       moneyManager.updateUsersList(response.data);
-      moneyManager.setMessage(true, "Пользователь успешно добавлен!!!");
+      favoritesWidget.setMessage(true, "Пользователь успешно добавлен!!!");
     } else {
-      moneyManager.setMessage(false, response.error);
+      favoritesWidget.setMessage(false, response.error);
     }
   });
 };
@@ -90,9 +93,9 @@ favoritesWidget.removeUserCallback = (data) => {
       favoritesWidget.clearTable();
       favoritesWidget.fillTable(response.data);
       moneyManager.updateUsersList(response.data);
-      moneyManager.setMessage(true, "Пользователь успешно удален!!!");
+      favoritesWidget.setMessage(true, "Пользователь успешно удален!!!");
     } else {
-      moneyManager.setMessage(false, response.error);
+      favoritesWidget.setMessage(false, response.error);
     }
   });
 };
